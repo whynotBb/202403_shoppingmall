@@ -9,6 +9,9 @@
     display: flex;
     justify-content: flex-end;
 }
+.login-section div {
+    cursor: pointer;
+}
 .logo-section {
     display: flex;
     align-items: center;
@@ -28,8 +31,25 @@
     list-style: none;
     gap: 10px;
 }
+.menu-list li {
+    cursor: pointer;
+}
 .search-box {
     position: absolute;
     top: 0;
     right: 0;
+    border-bottom: 1px solid #222;
+    padding: 0 10px 10px 10px;
+}
+.search-box input {
+    border: none;
+    outline: none;
+    padding: 0 10px;
+}
+.product-card-box {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
 }

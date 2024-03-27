@@ -30,8 +30,8 @@ const Navbar = () => {
             </div>
             <div className="nav-section">
                 <ul className="menu-list">
-                    {menuList.map((menu) => (
-                        <li>{menu}</li>
+                    {menuList.map((menu, index) => (
+                        <li key={index}>{menu}</li>
                     ))}
                 </ul>
                 <div className="search-box">
