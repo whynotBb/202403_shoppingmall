@@ -3,6 +3,7 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
     const menuList = [
@@ -15,16 +16,23 @@ const Navbar = () => {
         "Sale",
         "지속가능성",
     ];
+    const navigate = useNavigate();
+    const goToLogin = () => {
+        navigate("/login");
+    };
+    const goToHome = () => {
+        navigate("/");
+    };
     return (
         <div className="nav-wrapper">
             <div className="login-section">
-                <div>
+                <div onClick={goToLogin}>
                     <FontAwesomeIcon icon={faUser} />
                     로그인
                 </div>
             </div>
             <div className="logo-section">
-                <div className="logo">
+                <div className="logo" onClick={goToHome}>
                     <FontAwesomeIcon icon={faWaze} />
                 </div>
             </div>

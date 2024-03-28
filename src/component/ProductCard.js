@@ -2,12 +2,12 @@ import React from "react";
 
 const ProductCard = ({ item }) => {
     return (
-        <div>
-            <img src={item.img} alt="" width={100} />
+        <div className="product-card">
+            <img src={item.img} alt="" width={"100%"} />
             <div>{item?.new ? "new" : ""}</div>
             <div>{item?.choice ? "choice" : ""}</div>
             <div>{item?.title}</div>
-            <div>{item?.price}</div>
+            <div>{item?.price.toLocaleString()}</div>
         </div>
     );
 };

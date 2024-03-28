@@ -19,6 +19,7 @@
 }
 .logo {
     font-size: 30px;
+    cursor: pointer;
 }
 .nav-section {
     display: flex;
@@ -52,4 +53,7 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+}
+.product-card {
+    cursor: pointer;
 }
