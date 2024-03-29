@@ -2,8 +2,13 @@
     padding: 0;
     margin: 0;
 }
+body {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif !important;
+}
 .nav-wrapper {
-    padding: 20px;
+    padding: 30px 30px 60px;
 }
 .login-section {
     display: flex;
@@ -11,11 +16,15 @@
 }
 .login-section div {
     cursor: pointer;
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 .logo-section {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
 }
 .logo {
     font-size: 30px;
@@ -24,21 +33,58 @@
 .nav-section {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     position: relative;
+    flex-wrap: wrap;
 }
 .menu-list {
     display: flex;
     list-style: none;
-    gap: 10px;
+    gap: 20px;
 }
 .menu-list li {
     cursor: pointer;
+    transition: all 0.3s;
 }
-.search-box {
-    position: absolute;
+.menu-list li:hover {
+    font-weight: 700;
+}
+.mo_menu_btn {
+    position: fixed;
     top: 0;
     right: 0;
+    z-index: 20;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 25px;
+    transition: all 0.3s;
+    display: none;
+}
+@media screen and (max-width: 900px) {
+    .login-section {
+        padding-right: 30px;
+    }
+    .menu-list {
+        position: fixed;
+        top: 0;
+        right: -170px;
+        flex-direction: column;
+        width: 150px;
+        height: 100vh;
+        z-index: 10;
+        background: #fff;
+        box-shadow: -1px 1px 5px 1px rgba(0, 0, 0, 0.1);
+        padding: 100px 20px;
+        transition: all 0.3s;
+    }
+    .menu-list.open {
+        right: 0;
+    }
+    .mo_menu_btn {
+        display: block;
+    }
+}
+.search-box {
     border-bottom: 1px solid #222;
     padding: 0 10px 10px 10px;
 }
@@ -56,4 +102,10 @@
 }
 .product-card {
     cursor: pointer;
+    margin-bottom: 20px;
+}
+.product_detail_info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

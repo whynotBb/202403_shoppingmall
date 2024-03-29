@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { Col, Container, Form, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {Button, Col, Container, Form, Row} from 'react-bootstrap';
+import {useParams} from 'react-router-dom';
 
 const ProductDetail = () => {
-    let { id } = useParams();
-    console.log("params", id);
+    let {id} = useParams();
+    console.log('params', id);
     const [product, setProduct] = useState();
     const getProducts = async () => {
-        let url = `https://my-json-server.typicode.com/whynotBb/202403_shoppingmall/products?id=${id}`;
+        let url = `https://my-json-server.typicode.com/whynotBb/202403_shoppingmall/products/${id}`;
         console.log(url);
-        let reponse = await fetch(url);
-        let data = await reponse.json();
+        let response = await fetch(url);
+        let data = await response.json();
         console.log(data);
         setProduct(data);
     };
@@ -22,22 +22,24 @@ const ProductDetail = () => {
         <Container>
             {product && (
                 <Row>
-                    <Col>
-                        <img src={product[0].img} alt="" />
+                    <Col lg={6}>
+                        <img src={product.img} alt='' width={'100%'} />
                     </Col>
-                    <Col>
-                        <p>{product[0].new && "new"}</p>
-                        <h3>{product[0].title}</h3>
-                        <p>{product[0].choice && "choice"}</p>
-                        <h4>₩{product[0].price.toLocaleString()}</h4>
-                        <Form.Select aria-label="Size">
+                    <Col className='product_detail_info'>
+                        <p>
+                            {product.new && '✨new'} {product.choice && '👍 choice'}
+                        </p>
+                        <h3>{product.title}</h3>
+                        <h4>₩{product.price.toLocaleString()}</h4>
+                        <Form.Select aria-label='Size'>
                             <option>Size</option>
-                            {product[0].size.map((item, index) => (
+                            {product.size.map((item, index) => (
                                 <option key={index} value={index}>
                                     {item}
                                 </option>
                             ))}
                         </Form.Select>
+                        <Button variant='secondary'>add</Button>
                     </Col>
                 </Row>
             )}
