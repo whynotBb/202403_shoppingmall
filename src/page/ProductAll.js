@@ -25,6 +25,7 @@ const ProductAll = () => {
     };
     useEffect(() => {
         getProducts();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [query]);
 
     const productDetail = (id) => {
