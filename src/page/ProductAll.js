@@ -5,7 +5,7 @@ import {useNavigate, useSearchParams} from 'react-router-dom';
 
 const ProductAll = () => {
     // query 값 가져오기 => 사용 : query.get('@')
-    const [query, setQuery] = useSearchParams();
+    const [query, _] = useSearchParams();
 
     const navigate = useNavigate();
     const [productList, setProductList] = useState([]);
