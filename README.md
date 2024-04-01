@@ -13,10 +13,9 @@ netlify : https://202403-shoppingmall.netlify.app/
 
 -   my json server : https://my-json-server.typicode.com/
 
-## memo
+### redux ver
 
-파라미터 가져오기
-let {id} = useParams();
-
-query 값 가져오기 => 사용 : query.get('@')
-const [query, setQuery] = useSearchParams();
+npm install react-redux redux
+redux middleware
+-> https://github.com/reduxjs/redux-thunk npm install redux-thunk
+ㄴ> 리덕스의 비동기 처리를 위한 미들웨어 (ex, api 호출)
