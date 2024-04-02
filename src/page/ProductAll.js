@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ProductCard from '../component/ProductCard';
 import {Col, Container, Row} from 'react-bootstrap';
 import {useNavigate, useSearchParams} from 'react-router-dom';
@@ -10,13 +10,13 @@ const ProductAll = () => {
     const [query] = useSearchParams();
     const productList = useSelector((state) => state.product.productList);
     const dispatch = useDispatch();
-    const getProducts = () => {
+    const getProducts = async () => {
         let searchQuery = query.get('q') || '';
         dispatch(productAction.getProducts(searchQuery));
     };
-    // useEffect(() => {
-    //     getProducts();
-    // }, [query]);
+    useEffect(() => {
+        getProducts();
+    }, [query]);
     const productDetail = (id) => {
         navigate(`/product/${id}`);
     };
