@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import ProductCard from '../component/ProductCard';
 import {Col, Container, Row} from 'react-bootstrap';
 import {useNavigate, useSearchParams} from 'react-router-dom';
@@ -14,9 +14,9 @@ const ProductAll = () => {
         let searchQuery = query.get('q') || '';
         dispatch(productAction.getProducts(searchQuery));
     };
-    useEffect(() => {
-        getProducts();
-    }, [query]);
+    // useEffect(() => {
+    //     getProducts();
+    // }, [query]);
     const productDetail = (id) => {
         navigate(`/product/${id}`);
     };

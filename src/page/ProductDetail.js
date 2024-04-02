@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Button, Col, Container, Form, Row} from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
@@ -13,9 +13,9 @@ const ProductDetail = () => {
         console.log('here', id);
         dispatch(productAction.getProductDetail(id));
     };
-    useEffect(() => {
-        getProducts();
-    }, []);
+    // useEffect(() => {
+    //     getProducts();
+    // }, []);
     console.log(product);
     return (
         <Container>
