@@ -1,23 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {Button, Col, Container, Form, Row} from 'react-bootstrap';
+import {useDispatch, useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
+import {productAction} from '../redux/actions/productAction';
 
 const ProductDetail = () => {
     let {id} = useParams();
     console.log('params', id);
-    const [product, setProduct] = useState();
+    const product = useSelector((state) => state.product.productDetailList);
+    const dispatch = useDispatch();
     const getProducts = async () => {
-        let url = `https://my-json-server.typicode.com/whynotBb/202403_shoppingmall/products/${id}`;
-        console.log(url);
-        let response = await fetch(url);
-        let data = await response.json();
-        console.log(data);
-        setProduct(data);
+        console.log('here', id);
+        dispatch(productAction.getProductDetail(id));
     };
     useEffect(() => {
         getProducts();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    console.log(product);
     return (
         <Container>
             {product && (

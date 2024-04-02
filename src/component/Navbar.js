@@ -3,13 +3,17 @@ import {faUser} from '@fortawesome/free-regular-svg-icons';
 import {faBars, faMagnifyingGlass, faXmark} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 
-const Navbar = ({authenticate, setAuthenticate}) => {
+const Navbar = () => {
+    const authenticate = useSelector((state) => state.auth.authenticate);
     const menuList = ['여성', 'Divided', '남성', '신생아/유아', '아동', 'H&M Home', 'Sale', '지속가능성'];
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const goToLogin = () => {
-        authenticate ? setAuthenticate(false) : navigate('/login');
+        // !authenticate && navigate('/login');
+        authenticate ? dispatch({type: 'LOGOUT'}) : navigate('/login');
     };
     const goToHome = () => {
         navigate('/');
