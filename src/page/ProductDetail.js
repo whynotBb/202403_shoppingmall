@@ -2,16 +2,20 @@ import React, {useEffect} from 'react';
 import {Button, Col, Container, Form, Row} from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
-import {productAction} from '../redux/actions/productAction';
+import {fetchSingleProduct} from '../redux/reducers/productSlice';
 
 const ProductDetail = () => {
     let {id} = useParams();
     console.log('params', id);
     const product = useSelector((state) => state.product.productDetailList);
     const dispatch = useDispatch();
-    const getProducts = async () => {
+    // const getProducts = async () => {
+    //     console.log('here', id);
+    //     dispatch(productAction.getProductDetail(id));
+    // };
+    const getProducts = () => {
         console.log('here', id);
-        dispatch(productAction.getProductDetail(id));
+        dispatch(fetchSingleProduct(id));
     };
     useEffect(() => {
         getProducts();

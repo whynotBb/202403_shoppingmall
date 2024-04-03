@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 let initialState = {
     productList: [],
     productDetailList: null,
@@ -18,30 +18,36 @@ let initialState = {
 // }
 // export default productReducer;
 
-export const fetchProducts = createAsyncThunk(
-    "product/fetchAll",
-    async (searchQuery, thunkApi) => {
-        try {
-            let url = `https://my-json-server.typicode.com/whynotBb/202403_shoppingmall/products?q=${searchQuery}`;
-            let reponse = await fetch(url);
-            return await reponse.json();
-        } catch (error) {
-            thunkApi.rejectWithValue(error.message);
-        }
+export const fetchProducts = createAsyncThunk('product/fetchAll', async (searchQuery, thunkApi) => {
+    try {
+        let url = `https://my-json-server.typicode.com/whynotBb/202403_shoppingmall/products?q=${searchQuery}`;
+        let reponse = await fetch(url);
+        return await reponse.json();
+    } catch (error) {
+        thunkApi.rejectWithValue(error.message);
     }
-);
+});
+export const fetchSingleProduct = createAsyncThunk('product/fetchSingleProduct', async (id, thunkApi) => {
+    try {
+        let url = `https://my-json-server.typicode.com/whynotBb/202403_shoppingmall/products/${id}`;
+        let reponse = await fetch(url);
+        return await reponse.json();
+    } catch (error) {
+        thunkApi.rejectWithValue(error.message);
+    }
+});
 
 const productSlice = createSlice({
-    name: "product",
+    name: 'product',
     initialState,
     // reducer 동기적으로 바로 변경 된 state 값을 반영하는 아이들
     reducers: {
         // getAllProducts(state, action) {
         //     state.productList = action.payload.data;
         // }, -> extraReducer 로 이동
-        getSingleProduct(state, action) {
-            state.productDetailList = action.payload.data;
-        },
+        // getSingleProduct(state, action) {
+        //     state.productDetailList = action.payload.data;
+        // },
     },
     //extraReducers thunk 등 외부 라이브러리를 호출하는 reducer 들을 써줌 / api 호출 등
     extraReducers: (builder) => {
@@ -56,10 +62,21 @@ const productSlice = createSlice({
             .addCase(fetchProducts.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
+            })
+            .addCase(fetchSingleProduct.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(fetchSingleProduct.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.productDetailList = action.payload;
+            })
+            .addCase(fetchSingleProduct.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
             });
     },
 });
-console.log("props", productSlice);
+console.log('props', productSlice);
 
 export const productActions = productSlice.actions;
 
