@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
-import ProductCard from '../component/ProductCard';
-import {Col, Container, Row} from 'react-bootstrap';
-import {useNavigate, useSearchParams} from 'react-router-dom';
-import {productAction} from '../redux/actions/productAction';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect } from "react";
+import ProductCard from "../component/ProductCard";
+import { Col, Container, Row } from "react-bootstrap";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { productAction } from "../redux/actions/productAction";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "../redux/reducers/productSlice";
 
 const ProductAll = () => {
     const navigate = useNavigate();
@@ -11,8 +12,9 @@ const ProductAll = () => {
     const productList = useSelector((state) => state.product.productList);
     const dispatch = useDispatch();
     const getProducts = async () => {
-        let searchQuery = query.get('q') || '';
-        dispatch(productAction.getProducts(searchQuery));
+        let searchQuery = query.get("q") || "";
+        // dispatch(productAction.getProducts(searchQuery));
+        dispatch(fetchProducts(searchQuery));
     };
     useEffect(() => {
         getProducts();
@@ -26,7 +28,11 @@ const ProductAll = () => {
             <Container>
                 <Row>
                     {productList.map((item, index) => (
-                        <Col lg={3} key={index} onClick={() => productDetail(item.id)}>
+                        <Col
+                            lg={3}
+                            key={index}
+                            onClick={() => productDetail(item.id)}
+                        >
                             <ProductCard item={item} />
                         </Col>
                     ))}
