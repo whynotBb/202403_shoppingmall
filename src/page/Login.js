@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Button, Col, Container, Form, Row} from 'react-bootstrap';
 import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
-import {authenticateAction} from '../redux/actions/authenticateAction';
+import {loginSuccess} from '../redux/reducers/authenticateSlice';
 
 const Login = () => {
     const [id, setId] = useState('');
@@ -12,7 +12,7 @@ const Login = () => {
     const dispatch = useDispatch();
     const login = (e) => {
         e.preventDefault();
-        dispatch(authenticateAction.login(id, password));
+        dispatch(loginSuccess({id, password}));
         navigate('/');
     };
     return (

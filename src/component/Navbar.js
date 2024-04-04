@@ -5,15 +5,16 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
+import {logout} from '../redux/reducers/authenticateSlice';
 
 const Navbar = () => {
-    const authenticate = useSelector((state) => state.auth.authenticate);
+    const isAuthenticated = useSelector((state) => state.auth.authenticate);
     const menuList = ['여성', 'Divided', '남성', '신생아/유아', '아동', 'H&M Home', 'Sale', '지속가능성'];
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const goToLogin = () => {
         // !authenticate && navigate('/login');
-        authenticate ? dispatch({type: 'LOGOUT'}) : navigate('/login');
+        isAuthenticated ? dispatch(logout()) : navigate('/');
     };
     const goToHome = () => {
         navigate('/');
@@ -36,7 +37,7 @@ const Navbar = () => {
             <div className='login-section'>
                 <div onClick={goToLogin}>
                     <FontAwesomeIcon icon={faUser} />
-                    {authenticate ? '로그아웃' : '로그인'}
+                    {isAuthenticated ? '로그아웃' : '로그인'}
                 </div>
             </div>
             <div className='logo-section'>
